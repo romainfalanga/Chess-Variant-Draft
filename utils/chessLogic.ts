@@ -1,21 +1,5 @@
 import { Board, Piece, Position, Player, PieceType, GameState } from '@/types/chess';
 
-export function initializeDraftBoard(): Board {
-  const board: Board = Array(8).fill(null).map(() => Array(8).fill(null));
-  
-  // Seulement les pions sur les deuxièmes rangées
-  for (let col = 0; col < 8; col++) {
-    board[1][col] = { type: 'pawn', color: 'black' };
-    board[6][col] = { type: 'pawn', color: 'white' };
-  }
-  
-  return board;
-}
-
-export function getAvailableDraftPieces(): PieceType[] {
-  return ['rook', 'rook', 'knight', 'knight', 'bishop', 'bishop', 'queen', 'king'];
-}
-
 export function getPossibleMoves(
   board: Board,
   from: Position,
@@ -210,7 +194,7 @@ function isValidKingMove(
   }
   
   // Vérifier le roque
-  if (rowDiff === 0 && colDiff === 2 && gameState && removedSquares && !gameState.draftState) {
+  if (rowDiff === 0 && colDiff === 2 && gameState && removedSquares) {
     return isValidCastling(from, to, board, gameState, removedSquares);
   }
   

@@ -42,25 +42,13 @@ export interface GameState {
     blackKingside: boolean;
     blackQueenside: boolean;
   };
-  draftState?: DraftState;
 }
 
 export interface GameSettings {
   timeLimit: number; // en minutes
   removalsPerPlayer: number; // nombre de suppressions par joueur
-  draftMode: boolean; // mode draft activé ou non
 }
 
 export interface GameConfig extends GameSettings {
   gameStarted: boolean;
-  draftPhase: boolean; // true pendant la phase de placement des pièces
-}
-
-export interface DraftState {
-  availablePieces: {
-    white: PieceType[];
-    black: PieceType[];
-  };
-  selectedPiece: PieceType | null;
-  currentDraftPlayer: Player;
 }

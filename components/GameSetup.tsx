@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Dimensions,
+  Linking,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { GameSettings } from '@/types/chess';
@@ -32,6 +33,14 @@ export default function GameSetup({ settings, onSettingsChange, onStartGame }: G
 
   const toggleDraftMode = () => {
     onSettingsChange({ ...settings, draftMode: !settings.draftMode });
+  };
+
+  const openTipeee = () => {
+    Linking.openURL('https://fr.tipeee.com/romain-falanga');
+  };
+
+  const openTelegram = () => {
+    Linking.openURL('https://t.me/RomainFLGpublic');
   };
 
   return (
@@ -142,6 +151,27 @@ export default function GameSetup({ settings, onSettingsChange, onStartGame }: G
           <Ionicons name="play" size={20} color="#ffffff" />
           <Text style={styles.startButtonText}>Lancer la partie</Text>
         </TouchableOpacity>
+
+        {/* Donation and Social Buttons */}
+        <View style={styles.socialButtonsContainer}>
+          <TouchableOpacity
+            style={styles.donationButton}
+            onPress={openTipeee}
+            activeOpacity={0.8}
+          >
+            <Ionicons name="heart" size={16} color="#ffffff" />
+            <Text style={styles.donationButtonText}>Faire un don</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.telegramButton}
+            onPress={openTelegram}
+            activeOpacity={0.8}
+          >
+            <Ionicons name="paper-plane" size={16} color="#4a5568" />
+            <Text style={styles.telegramButtonText}>Telegram</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -251,6 +281,52 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#ffffff',
     marginLeft: 8,
+  },
+  socialButtonsContainer: {
+    flexDirection: 'row',
+    gap: 12,
+    marginTop: 16,
+    justifyContent: 'center',
+  },
+  donationButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#e74c3c',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 8,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+  },
+  donationButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#ffffff',
+    marginLeft: 6,
+  },
+  telegramButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    borderWidth: 2,
+    borderColor: '#4a5568',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 8,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+  },
+  telegramButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#4a5568',
+    marginLeft: 6,
   },
   draftToggleContainer: {
     flexDirection: 'row',
